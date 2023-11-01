@@ -1,8 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as React from "react";
 import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 //? routing avis+login+resa, villaKollo HOME MENU entête
@@ -50,26 +48,26 @@ export default  function BasicTabs() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-            
-          <Tab to="/reservation" label="Reserver" {...a11yProps(0)} />
-          <Tab to="/login" label="Se Connecter" {...a11yProps(1)} />
-          <Tab to="/avis" label="Livre d'Or" {...a11yProps(2)} />
-        </Tabs>
+        <ul className="flex flex-row">
+          <li>
+            <Link to="/reservation" className="navBar__link">
+              Réservation
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" className="navBar__link">
+              Mon Compte
+            </Link>
+          </li>
+          <li>
+            <Link to="/avis" className="navBar__link">
+              Livre d'Or
+            </Link>
+          </li>
+          
+        </ul>
       </Box>
-      <NavTabPanel value={value} index={0}>
-        Reserver
-      </NavTabPanel>
-      <NavTabPanel value={value} index={1}>
-        Se Connecter
-      </NavTabPanel>
-      <NavTabPanel value={value} index={2}>
-        Livre d'Or
-      </NavTabPanel>
+      
     </Box>
   );
 }

@@ -1,45 +1,48 @@
-import { Outlet } from "react-router-dom";
-import { Box } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import * as React from "react";
-import { NavLink } from "react-router-dom";
-/* <TODO>
-  → formulaire de resitration user
-  → formulaire de resitration admin
-  → Sign-in user
-  → Sign-in admin
-              → gestion users 
-</TODO> */
+import { useState } from "react";
+
 
 const Login = () => {
+  // État local pour stocker les valeurs des champs du formulaire
+  const [inputValue, setInputValue] = useState({
+    login: "TestLogin",
+    password: "testPassword",
+  });
+
+  console.log("inputValues ↓↓↓");
+  console.log(inputValue);
+
+  // Fonction de gestion des changements dans les champs du formulaire
+  const handleChange = (name, value) => {
+    setInputValue((prevState) => ({ ...prevState, [name]: value }));
+  };
+  
+  // État local pour suivre si l'utilisateur est déjà enregistré ou non
+  const [isRegistered, setIsRegistered] = useState(false);
+
   return (
     <div className="LoginDiv">
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="logName" label="Login" variant="outlined" />
-        <TextField
-          id="outlined-password-input"
+      <form>
+      <label htmlFor="Login">Login :</label>
+        <input
+          label="Login"
+          type="text"
+          name="login"
+          className="input"
+          value={inputValue.login}
+          onChange={(e) => handleChange("login", e.target.value)}
+        />
+        <label htmlFor="noPasswordm">Password :</label>
+        <input
           label="Password"
           type="password"
-          autoComplete="current-password"
+          name="password"
+          className="input"
+          value={inputValue.password}
+          onChange={(e) => handleChange("password", e.target.value)}
         />
-      </Box>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea optio,
-        aspernatur similique magni facere quibusdam, doloribus quaerat non
-        laboriosam et laudantium eum temporibus rerum voluptas asperiores
-        eligendi quisquam autem nesciunt?
-      </p>
-      <div className="newLogin">
-        <NavLink to="/registration"> Créer un Compte</NavLink>
-      </div>
-      <Outlet />
+        <button type="submit">→ Login →</button>
+      </form>
     </div>
   );
 };
