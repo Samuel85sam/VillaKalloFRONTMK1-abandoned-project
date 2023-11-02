@@ -7,10 +7,11 @@ const Register = (props) => {
 
   // État local pour stocker les valeurs du formulaire
   const [inputValue, setInputValue] = useState({
-    nom: "nomTest",
-    prenom: "prenomTest",
-    tel: "0123456789",
-    email: "mail@test",
+    // nom: "nomTest",
+    // prenom: "prenomTest",
+    // tel: "0123456789",
+    // email: "mail@test",
+    login:"logNameTest",
     password: "passwordTest",
   });
 
@@ -32,20 +33,24 @@ const Register = (props) => {
     e.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
 
       //Validations et  contrôles de saisie pour garantir que les données sont correctes avant l'envoi
-    if(inputValue.nom ===''){
+    // if(inputValue.nom ===''){
+    //   alert('veuillez saisir un nom.');
+    //   return;
+    // }
+    // if(inputValue.prenom ===''){
+    //   alert('veuillez saisir un prenom.');
+    //   return;
+    // }
+    // if(inputValue.tel ===''){
+    //   alert('veuillez saisir un tel.');
+    //   return;
+    // }
+    // if(inputValue.email ===''){
+    //   alert('veuillez saisir une adresse email.');
+    //   return;
+    // }
+    if(inputValue.loginName ===''){
       alert('veuillez saisir un nom.');
-      return;
-    }
-    if(inputValue.prenom ===''){
-      alert('veuillez saisir un prenom.');
-      return;
-    }
-    if(inputValue.tel ===''){
-      alert('veuillez saisir un tel.');
-      return;
-    }
-    if(inputValue.email ===''){
-      alert('veuillez saisir une adresse email.');
       return;
     }
     if(inputValue.password ===''){
@@ -60,18 +65,20 @@ const Register = (props) => {
 
   // Fonction pour envoyer les données au serveur via Axios
   const PostToApi = (inputValue) => {
-    axios.post("http://localhost:3002/api/auth/register", inputValue);
+    console.log('input values ↓↓↓');
+    console.log(inputValue);
+    axios.post("http://localhost:3000/api/auth/register", inputValue);
   };
 
   useEffect(() => {
         // Si "readyToSend" est true, alors appelez PostToApi
-    readyToSend === false ? null : PostToApi();
+    readyToSend === false ? null : PostToApi(inputValue);
   }, [readyToSend]);
 
   return (
     <div className="RegistrationDiv">
       <form>
-      <label htmlFor="nom">Nom :</label>
+      {/* <label htmlFor="nom">Nom :</label>
         <input
           label="nom"
           type="text"
@@ -106,6 +113,15 @@ const Register = (props) => {
           className="input"
           value={inputValue.email}
           onChange={(e) => handleChange("email", e.target.value)}
+        /> */}
+         <label htmlFor="loginName">LoginName :</label>
+        <input
+          label="LoginName"
+          type="text"
+          name="loginName"
+          className="input"
+          value={inputValue.loginName}
+          onChange={(e) => handleChange("login", e.target.value)}
         />
         <label htmlFor="password">Password :</label>
         <input
