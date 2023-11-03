@@ -1,8 +1,9 @@
 import * as React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { GuardProvider } from "react-router-guards";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+
 
 const Login = () => {
 
@@ -51,19 +52,31 @@ const Login = () => {
     console.log(inputValue);
     axios.post("http://localhost:3000/api/auth/login", inputValue).then(function (response) {
       if(response.status == 200){
-         navigate('/homeUser')
+         localStorage.setItem("token", response.data.token)//sauvegarde du token dans le localStorage
+         console.log('token récupéré↓↓↓');
+         console.log(response);
+         navigate('/homeUser');
       }
     })
-    // axios.put(`http://localhost:3000/v1/org/password/reset`, {
-    //   password: "example",
-    //   token: "19u8e8j2039d3d32blahblah"
-    // })
-  
+     
   .catch(function (error) {
     console.log("error", error);
     //handle error here
   });
  
+  //------------------récupération de JWT pour log de l'utilisateur-------------------------
+
+// Assuming you have obtained the JWT token
+const jwtToken = 'response.json';
+
+// Set the token in cookies or localStorage
+Cookies.set('jwtToken', jwtToken); // You can also use localStorage.setItem()
+
+// Redirect the user to the protected route (e.g., /homeUser)
+// Or handle the redirection as per your app's logic
+
+  //--------------------------------------------------------
+
   }
 
   useEffect(() => {

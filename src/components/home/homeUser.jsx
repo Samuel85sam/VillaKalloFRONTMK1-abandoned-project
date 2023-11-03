@@ -1,4 +1,9 @@
-const HomeUser = () => {
+import { Navigate } from 'react-router-dom';
+
+const HomeUser = ({user}) => {
+  if (!user){
+    return <Navigate to='/home' replace/>
+  }
   return (
     <div className="HomeUserDiv">
       <h1>Page Utilisateur</h1>
