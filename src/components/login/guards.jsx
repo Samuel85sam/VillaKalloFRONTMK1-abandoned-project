@@ -1,7 +1,7 @@
 import { Cookie } from '@mui/icons-material';
 import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivateRoute = () => {
+const Guards = () => {
 
     const  authLogin  = localStorage.getItem('token')
     console.log('token récupéré du local storage dans guards ↓↓↓');
@@ -18,4 +18,4 @@ const PrivateRoute = () => {
   
 
 
-export default PrivateRoute;
+export default Guards;

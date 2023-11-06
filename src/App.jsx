@@ -1,4 +1,4 @@
-import Footer from './static/navBarFooter/footer';
+import Footer from './shared/navBarFooter/footer';
 import Home from "./components/home/home";
 import LandingPage from "./components/login/landingPage";
 import Register from "./components/login/register";
@@ -10,6 +10,7 @@ import HomeAdmin from "./components/home/homeAdmin";
 import './App.scss'
 import { Routes, Route, Link } from "react-router-dom";
 import PrivateRoute from './components/login/guards';
+import Guards from './components/login/guards';
 
 
 const App = () => {
@@ -18,12 +19,12 @@ const App = () => {
 
   return (
     <>
-      <h1>React Router</h1>
+      
 
       <Navigation />
 
       <Routes>
-        <Route path="" element={<PrivateRoute />} >
+        <Route path="" element={<Guards/>} >
           <Route path="homeUser" element={<HomeUser />} />
           <Route path="homeAdmin" element={<HomeAdmin />} />
         </Route>
@@ -43,7 +44,7 @@ const App = () => {
 const Navigation = () => {
 
   return (
-    <div>
+    <div className='divNav'>
       <nav
         style={{
           borderBottom: 'solid 1px',

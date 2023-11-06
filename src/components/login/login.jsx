@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import { PostLoginToApi } from "../../API/api";
 
 
 const Login = () => {
@@ -47,22 +48,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Fonction pour envoyer les données au serveur via Axios
-  const PostToApi = (inputValue) => {
-    console.log('input values (envoyées à DB)↓↓↓');
-    console.log(inputValue);
-    axios.post("http://localhost:3000/api/auth/login", inputValue).then(function (response) {
-      if(response.status == 200){
-         localStorage.setItem("token", response.data.token)//sauvegarde du token dans le localStorage
-         console.log('token récupéré↓↓↓');
-         console.log(response);
-         navigate('/homeUser');
-      }
-    })
+
      
-  .catch(function (error) {
-    console.log("error", error);
-    //handle error here
-  });
+
  
   //------------------récupération de JWT pour log de l'utilisateur-------------------------
 
@@ -77,13 +65,22 @@ Cookies.set('jwtToken', jwtToken); // You can also use localStorage.setItem()
 
   //--------------------------------------------------------
 
+  const postLogin = async (data) => {
+    const result = await PostLoginToApi(data)
+    .then(res => res === 200 ? 
+      navigate('/homeUser') : null)
+      .catch(function (error) {
+        console.log("error", error);
+        //handle error here
+      });
   }
+  
 
   useEffect(() => {
     // Si "readyToSend" est true, alors appeler PostToApi
-readyToSend === false ? null : PostToApi(inputValue);
-console.log('envoi inputValue envoyée à postToApi ↓↓↓');
-console.log(inputValue);
+  readyToSend === false ? null : postLogin(inputValue);
+  console.log('envoi inputValue envoyée à postToApi ↓↓↓');
+  console.log(inputValue);
 }, [readyToSend]);
 
   // État local pour suivre si l'utilisateur est déjà enregistré ou non
