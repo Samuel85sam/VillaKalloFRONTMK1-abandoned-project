@@ -133,7 +133,7 @@ const Register = (props) => {
           onChange={(e) => handleChange("password", e.target.value)}
         />
         <button type="submit" onClick={handleSubmit}>
-          Register
+         →S'enregistrer→
         </button>
       </form>
     </div>
