@@ -55,19 +55,16 @@ const Login = () => {
   //--------------------------------------------------------
 
   const postLogin = async (data) => {
-//!↓↓↓ methode Sam
-    // const resStatus = await PostLoginToApi(data) 
-    // console.log('resStatus↓↓↓');
-    // console.log(resStatus);
-    // //! pourquoi resStatus = undefined??? ==>authCalls ligne 15
-    // if (resStatus == !200) {
-    //   navigate("/landingPage")
-    // }
-    // navigate("/homeUser")
-//!pas de redirrection sur homeUser ou landingPage mais systematiquement sur home!!! 
-//!↓↓↓ methode aurelien
-    const result = await PostLoginToApi(data)
-    console.log(result)
+
+    const result = await PostLoginToApi(data);
+    console.log(`result in login ====>${result}`);
+    if (result === 200) {
+      navigate('/homeUser')
+      console.log('===> redirection HomeUser');
+    }else if(result === !200){
+    navigate('/landing page')
+    log('====> redirection landing page')
+  }
   };
 
   useEffect(() => {
