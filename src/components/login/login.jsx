@@ -59,7 +59,7 @@ const Login = () => {
     // const resStatus = await PostLoginToApi(data) 
     // console.log('resStatus↓↓↓');
     // console.log(resStatus);
-    //! pourquoi resStatus = undefined??? ==>authCalls ligne 15
+    // //! pourquoi resStatus = undefined??? ==>authCalls ligne 15
     // if (resStatus == !200) {
     //   navigate("/landingPage")
     // }
@@ -67,10 +67,7 @@ const Login = () => {
 //!pas de redirrection sur homeUser ou landingPage mais systematiquement sur home!!! 
 //!↓↓↓ methode aurelien
     const result = await PostLoginToApi(data)
-      .then((res) => (res === 200 ? navigate("/homeUser") : navigate("/landingPage")))
-      .catch(function (error) {
-        console.log("error", error);
-      });
+    console.log(result)
   };
 
   useEffect(() => {
