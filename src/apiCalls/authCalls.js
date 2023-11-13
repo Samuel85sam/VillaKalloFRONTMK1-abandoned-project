@@ -6,15 +6,17 @@ export const PostLoginToApi = async (data) => {
   try {
     const response = await axios.post("http://localhost:3000/api/auth/login", data);
     if (response.status == 200) {
+      console.log('token récupéré et enregistré');
         localStorage.setItem("token", response.data.token); //sauvegarde du token dans le localStorage
-        console.log("token récupéré↓↓↓");
-        console.log(response.data.token);
+        // console.log("token récupéré↓↓↓");
+        // console.log(response.data.token);
         console.log('response.status↓↓↓');
         console.log(response.status);
-        return response.status;
+        return response;
         
       } else {
-        return response.status;
+        return console.log('!!!===>log fail!!!');;
+        
       }
     } catch (err) {
       console.error(err);

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 {
   /* <TODO> 
   
@@ -9,7 +9,9 @@ import { Outlet } from "react-router-dom";
   → 
 </TODO> */
 }
-const Home = () => {
+const Maison = () => {
+
+
   return (
     <section className="HomeSection">
       <h1>HomePage</h1>
@@ -19,9 +21,9 @@ const Home = () => {
         quos ea modi iure commodi asperiores laborum ipsum tempora? Quasi,
         similique soluta!
       </p>
-      <Outlet />
+      {/* <Outlet /> */}
     </section>
   );
 };
 
-export default Home;
+export default Maison;

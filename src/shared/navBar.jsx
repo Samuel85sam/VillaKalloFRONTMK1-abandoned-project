@@ -9,7 +9,7 @@ const Navigation = () => {
           paddingBottom: "1rem",
         }}
       >
-        <Link to="/home">HOME</Link>
+        <Link to="">HOME</Link>
         <br />
         <Link to="/landingPage">LOGIN</Link>
         <br />
